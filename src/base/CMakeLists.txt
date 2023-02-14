@@ -50,20 +50,20 @@ add_library(bbfft-base ${SOURCES} $<TARGET_OBJECTS:bbfft-private-test>)
 add_library(bbfft::bbfft-base ALIAS bbfft-base)
 set_common_options(bbfft-base)
 target_link_libraries(bbfft-base PRIVATE clir::clir)
-set(bbfft_export_header "${CMAKE_BINARY_DIR}/include/bbfft/export.hpp")
+set(bbfft_export_header "${PROJECT_BINARY_DIR}/include/bbfft/export.hpp")
 generate_export_header(bbfft-base BASE_NAME BBFFT
     EXPORT_FILE_NAME "${bbfft_export_header}")
 target_compile_definitions(bbfft-base PUBLIC
     "$<$<NOT:$<BOOL:${BUILD_SHARED_LIBS}>>:BBFFT_STATIC_DEFINE>")
 target_include_directories(bbfft-base PUBLIC
     "$<BUILD_INTERFACE:${BBFFT_SOURCE_DIR}/include>"
-    "$<BUILD_INTERFACE:${CMAKE_BINARY_DIR}/include>"
+    "$<BUILD_INTERFACE:${PROJECT_BINARY_DIR}/include>"
 )
 target_include_directories(bbfft-base PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}"
                                               "${CMAKE_CURRENT_SOURCE_DIR}/../common")
 target_sources(bbfft-base PUBLIC FILE_SET HEADERS
     BASE_DIRS ${BBFFT_SOURCE_DIR}/include
-              ${CMAKE_BINARY_DIR}/include
+      ${PROJECT_BINARY_DIR}/include
     FILES ${PUBLIC_HEADERS}
           "${bbfft_export_header}")
 install_lib(bbfft-base bbfft)

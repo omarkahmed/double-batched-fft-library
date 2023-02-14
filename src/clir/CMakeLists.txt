@@ -62,15 +62,15 @@ target_include_directories(clir PUBLIC
 )
 target_compile_features(clir PRIVATE cxx_std_17)
 target_compile_options(clir PRIVATE -Wall -Wextra -Wpedantic)
-set(clir_export_header "${CMAKE_BINARY_DIR}/include/clir/export.hpp")
+set(clir_export_header "${PROJECT_BINARY_DIR}/include/clir/export.hpp")
 generate_export_header(clir EXPORT_FILE_NAME "${clir_export_header}")
 target_compile_definitions(clir PUBLIC
     "$<$<NOT:$<BOOL:${BUILD_SHARED_LIBS}>>:CLIR_STATIC_DEFINE>")
 target_include_directories(clir PUBLIC
-    "$<BUILD_INTERFACE:${CMAKE_BINARY_DIR}/include>"
+    "$<BUILD_INTERFACE:${PROJECT_BINARY_DIR}/include>"
 )
 target_sources(clir PUBLIC FILE_SET HEADERS
-    BASE_DIRS ${BBFFT_SOURCE_DIR}/include ${CMAKE_BINARY_DIR}/include
+  BASE_DIRS ${BBFFT_SOURCE_DIR}/include ${PROJECT_BINARY_DIR}/include
     FILES ${PUBLIC_HEADERS} ${clir_export_header})
 
 # installation
