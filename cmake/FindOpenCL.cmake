@@ -75,6 +75,7 @@ else()
             "${COMPILER_PATH}/../include/sycl"
         PATH_SUFFIXES
             include
+            include/sycl
             compiler/latest/linux/include
             compiler/latest/linux/include/sycl
     )
